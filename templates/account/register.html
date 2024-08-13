@@ -1,0 +1,16 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %}Foydalanuvchilarni Ro'yxatdan utkazish{% endblock title %}
+
+{% block content %}
+
+    <h1>Yangi Foydalanuvchilarni Ro'yxatdan utkazish</h1>
+    <p>Ro'yxatdan utish uchun quyidagi formani tuldiring</p>
+    <form method="post">{% csrf_token %}
+    {{ user_form.as_p }}
+    <p><button type="submit">Ro'yxatdan utkazish</button></p>
+    </form>
+
+
+
+{% endblock %}

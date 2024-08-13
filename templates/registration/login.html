@@ -1,0 +1,23 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %}Login Sahifasi{% endblock title %}
+
+{% block content %}
+	
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <h2 class="text-center">Login</h2>
+                <p class="text-center">Iltimos,Saytga kirish uchun quyidagi formani tuldiring</p>
+                <p class="h5">Agar parolni unutgan bulsangiz <a href="{% url 'password_reset' %}" class="text-danger">Tiklang</a> </p>
+                <form class="form-group" method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+                <h4>Agar Foydalanuvchi Profilingiz Bo'lmasa,<a class="blue_bg" href="{% url 'user_register' %}">Ro'yxatdan O'tishingiz</a>Mumkin</h4>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

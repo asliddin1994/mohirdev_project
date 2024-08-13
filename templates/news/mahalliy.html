@@ -7,11 +7,13 @@
 
     	<div class="container">
             <div class="row">
-                {% for news in mahalliy_yangiliklar %}
-                <div class="col-sm-6 col-6">
-                    <img class="col-sm-6 col-6" src="{{ news.image.url }}" style="width: 50%;" alt="{{ news.title }}">
-                    <h2 class="h3">{{ news.title }}</h2>
-                </div>
+                {% for mahalliy in mahalliy_xabarlar %}
+                    <div class="col-sm-6 col-6">
+                        <a href="{% url 'news_detail_page' mahalliy.slug %}">
+                          <img style="width: 50%; height: 50%" class="col-sm-6 col-6" src="{{ mahalliy.image.url }}" style="width: 50%;" alt="{{ mahalliy.title }}">
+                          <h2 class="h3">{{ mahalliy.title }}</h2>
+                        </a>
+                    </div>
                 {% endfor %}
             </div>
         </div>

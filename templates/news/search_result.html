@@ -1,0 +1,25 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %}Qidiruv sahifasi{% endblock title %}
+
+{% block content %}
+        <div class="container">
+        <div class="row">
+            {% for yangilik in barcha_yangiliklar %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ yangilik.image.url }}" style="width: 50%; height: 50%" alt="{{ yangilik.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ yangilik.title }}</h5>
+                            <p class="card-text">{{ yangilik.body|slice:":150" }}...</p>
+                            <a href="{% url 'news_detail_page' yangilik.slug %}" class="btn btn-primary">Batafsil</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-center">Hech qanday yangilik topilmadi.</p>
+            {% endfor %}
+        </div>
+        </div>
+        
+{% endblock %}

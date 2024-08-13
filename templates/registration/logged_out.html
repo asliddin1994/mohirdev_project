@@ -1,0 +1,19 @@
+{% extends 'news/base.html' %}
+
+{% load static %}
+
+{% block title %}Logout{% endblock title %}
+
+{% block content %}
+
+        <div class="container">
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-6">
+                    <h2 class="text-center">Web saytdan chiqish</h2>
+                    <p class="text-center">Siz web saytdan chiqyapsiz<a href="{% url 'login' %}">Qaytadan Kirish</a> </p>
+                </div>
+            </div>
+        </div>
+
+
+{% endblock content %}

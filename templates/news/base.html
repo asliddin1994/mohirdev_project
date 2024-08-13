@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="eng">
 <head>
 <title>{% block title %}{% endblock title %}</title>
 <meta charset="utf-8">
@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/theme.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
 
 </head>
 <body>
@@ -32,9 +33,18 @@
               <li><a href="{% url 'home_page' %}">Bosh Sahifa</a></li>
               <li><a href="#">Biz Haqimizda</a></li>
               <li><a href="{% url 'contact_page' %}">Biz bilan Aloqa</a></li>
+                {% if user.is_authenticated and user.is_superuser %}
+                <li><a href="{% url 'admin_page' %}">Admin Sahifasi</a></li>
+                {% endif %}
             </ul>
           </div>
           <div class="header_top_right">
+              {% if request.user.is_authenticated %}
+              <p><a href="{% url 'user_profile' %}" style="color: blue;">My Profile</a> </p>
+              <p><a href="{% url 'logout' %}" style="color: springgreen;">Logout</a> </p>
+              {% else %}
+              <p><a href="{% url 'login' %}" style="color: blue;">Login</a></p>
+              {% endif %}
             <p>{% now "jS F Y H:i" %}</p>
           </div>
         </div>
@@ -60,6 +70,14 @@
               <li><a href="{% url 'texnology_news_page' %}">Texnologiya</a></li>
               <li><a href="{% url 'sport_news_page' %}">Sport</a></li>
               <li><a href="{% url 'contact_page' %}">Biz bilan Aloqa</a></li>
+              <li>
+                  <form method="get" style="margin-top: 10px" action="{% url 'search_results' %}">
+                      <label>
+                          <input type="search" class="form-control">
+                      </label>
+                      <button name="q" placeholder="Qidiruv..." class="form-inline" type="submit"></button>
+                  </form>
+              </li>
         </ul>
        </div>
     </nav>

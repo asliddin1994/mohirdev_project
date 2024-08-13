@@ -1,0 +1,75 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}Foydalanuvchi Profile{% endblock title %}
+
+{% block content %}
+        <section style="background-color: #eee;">
+  <div class="container py-5">
+      
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+              <h5 class="my-3">Xush Kelibsiz {{ user.username }}</h5>
+                <p class="text-muted mb-1"><a href="{% url 'logout' %}" class="text-danger">Logout</a></p>
+                <p class="text-muted mb-4">Siz haqingizdagi Malumotlar</p>
+            <img src="{{ profile.photo.url }}" alt="avatar" class="rounded img-fluid" style="width: 150px; border-radius: 10%">
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Username</p>
+              </div>
+              <div class="col-sm-9">
+                <label class="text-muted mb-0"><input value="{{ user.username }}" readonly placeholder="Kiritilmagan"></label>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <label class="text-muted mb-0"><input value="{{ user.email }}" readonly placeholder="Kiritilmagan"></label>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Ismingiz</p>
+              </div>
+              <div class="col-sm-9">
+                <label class="text-muted mb-0"><input value="{{ user.first_name }}" readonly placeholder="Kiritilmagan"></label>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Familiyangiz:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><input value="{{ user.last_name }}" readonly placeholder="Kiritilmagan"></p>
+              </div>
+            </div>
+            <hr>
+              <div class="row">
+                  <div class="col-sm-3">
+                <p class="mb-0"><a class="btn-primary" href="{% url 'password_change' %}">Parolni Almashtirish</a></p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"><a href="{% url 'edit_user_information' %}" class="text-danger">Profilni uzgartirish</a></p>
+              </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

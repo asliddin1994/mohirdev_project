@@ -9,8 +9,10 @@
             <div class="row">
                 {% for news in xorij_yangiliklar %}
                 <div class="col-sm-6 col-6">
-                    <img class="col-sm-6 col-6" src="{{ news.image.url }}" style="width: 50%;" alt="{{ news.title }}">
-                    <h2 class="h3">{{ news.title }}</h2>
+                    <a href="{{ news.get_absolute_url }}">
+                        <img class="col-sm-6 col-6" src="{{ news.image.url }}" style="width: 50%;" alt="{{ news.title }}">
+                        <h2 class="h3">{{ news.title }}</h2>
+                    </a>
                 </div>
                 {% endfor %}
             </div>

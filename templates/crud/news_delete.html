@@ -1,0 +1,15 @@
+{% extends 'news/base.html' %}
+
+{% load static %}
+
+{% block title %}{{ news.title }}{% endblock title %}
+
+{% block content %}
+
+    <h2 class="text-center">Joriy Yangilikni O'chirish</h2>
+    <form method="post" action="{% url 'news_delete' slug=news.slug %}">{% csrf_token %}
+        <p>{{ news.title | truncatewords:3 }}...sarlavhali yangilikni o'chirmoqchimisiz ?</p>
+        <button class="btn btn-danger ml-2" type="submit">Tasdiqlayman</button>
+    </form>
+
+{% endblock content %}

@@ -1,5 +1,6 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load hitcount_tags %}
 {% block title %}Bosh Sahifa{% endblock title %}
 {% block content %}
   <section id="sliderSection">
@@ -7,10 +8,11 @@
       <div class="col-lg-8 col-md-8 col-sm-8">
         <div class="slick_slider">
             {% for news in news_list %}
-              <div class="single_iteam"> <a href="{{ news.get_absolute_url }}"> <img src="{{ news.image.url }}" alt=""></a>
-                <div class="slider_article">
-                  <h2><a class="slider_tittle" href="{{ news.get_absolute_url }}">{{ news.title | truncatewords:5 }}</a></h2>
-                  <p>{{ news.title }}</p>
+              <div class="single_iteam">
+                  <a href="{{ news.get_absolute_url }}"><img src="{{ news.image.url }}" alt=""></a>
+                    <div class="slider_article">
+                    <h2><a class="slider_tittle" href="{{ news.get_absolute_url }}">{{ news.title }}</a></h2>
+                    <p>{{ news.title }}</p>
                 </div>
               </div>
             {% endfor %}
@@ -24,8 +26,11 @@
             <ul class="latest_postnav">
                 {% for news in news_list %}
                   <li>
-                    <div class="media"> <a href="{{ news.get_absolute_url }}" class="media-left"> <img alt="" src="{{ news.image.url }}"> </a>
-                      <div class="media-body"> <a href="{{ news.get_absolute_url }}" class="catg_title">{{ news.title }}</a> </div>
+                    <div class="media"><a href="{{ news.get_absolute_url }}" class="media-left"><img alt="" src="{{ news.image.url }}"></a>
+                      <div class="media-body"><a href="{{ news.get_absolute_url }}" class="catg_title">{{ news.title }}</a></div>
+                        <p>Ko'rilganlar Soni
+                            <i class="fa fa-eye text-primary" aria-hidden="true">{% get_hit_count for news %}</i>
+                        </p>
                     </div>
                   </li>
               {% endfor %}
@@ -71,6 +76,9 @@
                       <div class="media wow fadeInDown"> <a href="{{ mahalliy.get_absolute_url }}" class="media-left"> <img alt="" src="{{ mahalliy.image.url }}"> </a>
                         <div class="media-body"> <a href="{{ mahalliy.get_absolute_url }}" class="catg_title">{{ mahalliy.title }}</a> </div>
                       </div>
+                         <p>Ko'rilganlar Soni
+                            <i class="fa fa-eye text-primary" aria-hidden="true">{% get_hit_count for mahalliy %}</i>
+                        </p>
                     </li>
                       {% endif %}
                   {% endfor %}
@@ -97,9 +105,12 @@
                     {% for xorij in xorij_xabarlar %}
                         {% if forloop.counter > 1 %}
                           <li>
-                            <div class="media wow fadeInDown"> <a href="{% url 'news_detail_page' xorij.pk %}" class="media-left"> <img alt="" src="{{ xorij.image.url }}"> </a>
-                              <div class="media-body"> <a href="{% url 'news_detail_page' xorij.pk %}" class="catg_title">{{ xorij.title }}</a> </div>
+                            <div class="media wow fadeInDown"> <a href="{{ xorij.get_absolute_url }}" class="media-left"> <img alt="" src="{{ xorij.image.url }}"> </a>
+                              <div class="media-body"> <a href="{{ xorij.get_absolute_url }}" class="catg_title">{{ xorij.title }}</a> </div>
                             </div>
+                              <p>Ko'rilganlar Soni
+                                <i class="fa fa-eye text-primary" aria-hidden="true">{% get_hit_count for xorij %}</i>
+                            </p>
                           </li>
                         {% endif %}
                     {% endfor %}
@@ -129,6 +140,9 @@
                     <div class="media wow fadeInDown"> <a href="{{ texnologiya.get_absolute_url }}" class="media-left"> <img alt="" src="{{ texnologiya.image.url }}"> </a>
                       <div class="media-body"> <a href="{{ texnologiya.get_absolute_url }}" class="catg_title">{{ texnologiya.title }}</a> </div>
                     </div>
+                  <p>Ko'rilganlar Soni
+                      <i class="fa fa-eye text-primary" aria-hidden="true">{% get_hit_count for texnologiya %}</i>
+                  </p>
                   </li>
                         {% endif %}
                    {% endfor %}
@@ -195,6 +209,9 @@
                           <div class="media wow fadeInDown"> <a href="{{ sport.get_absolute_url }}" class="media-left"> <img alt="" src="{{ sport.image.url }}"> </a>
                             <div class="media-body"> <a href="{{ sport.get_absolute_url }}" class="catg_title">{{ sport.title }}</a> </div>
                           </div>
+                            <p>Ko'rilganlar Soni
+                              <i class="fa fa-eye text-primary" aria-hidden="true">{% get_hit_count for sport %}</i>
+                          </p>
                         </li>
                     {% endif %}
                   {% endfor %}
